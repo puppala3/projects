@@ -1,4 +1,4 @@
-#Q1 Trigger
+#1 Trigger A bid date cannot be earlier than the listed date of the property on inserting a tuple in BID_HISTORY
 delimiter //
 create trigger bid_date
   before insert on bid_history
@@ -23,7 +23,8 @@ insert into bid_history
     values(3, 101, '2023-10-03', 210000, null, null);
 
 
-#Q2 Trigger
+#2 Trigger When a tuple is inserted into the BID_HISTORY table, make sure that the buyer’s
+realtor and the seller’s realtor are not the same
 delimiter //
 create trigger Realtor
    before insert on bid_history
@@ -51,7 +52,8 @@ insert into bid_history
     values(3, 105, '2023-10-10', 70000, null, null);
     
     
-#Q3 Trigger
+#3 Trigger When a tuple is inserted into the BID_HISTORY table, make sure that the bid price is
+higher than the current lowest bid price for the property
 Delimiter //
 create trigger bid_price
    before insert on bid_history
@@ -77,7 +79,9 @@ insert into bid_history
 insert into bid_history
     values(1, 101, '2023-10-08', 150000, null, null);    
 
-#Q4 Stored Procedure
+#4 Stored Procedure It receives as an input parameter
+a property ID, PID, and returns the following information about the highest bidder for the
+property: the name of the seller, the name of the seller’s realtor, and the bid price.
 DELIMITER $$
 
 CREATE PROCEDURE get_highest_bidder(IN PID INT)
